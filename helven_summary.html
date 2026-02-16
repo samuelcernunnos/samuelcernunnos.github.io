@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ficha Editável - Helven Elvenwood</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=MedievalSharp&family=Cinzel:wght@400;700&display=swap');
+        :root {
+            --main-bg: #e8e0c2; --sheet-bg: #faf3e0; --border-color: #8b4513;
+            --header-color: #8b0000; --text-color: #3a2d21; --box-bg: #f5deb3; --box-border: #c8a062;
+        }
+        body {
+            font-family: 'Cinzel', serif; background-color: var(--main-bg); color: var(--text-color);
+            margin: 0; padding: 20px; display: flex; flex-direction: column; align-items: center;
+            background-image: url('https://www.transparenttextures.com/patterns/old-parchment.png');
+        }
+        h1, h2, h3 { font-family: 'MedievalSharp', cursive; color: var(--header-color); }
+        .sheet-container {
+            width: 100%; max-width: 850px; background-color: var(--sheet-bg); border: 2px solid var(--border-color);
+            border-radius: 5px; padding: 20px; box-shadow: 0 0 20px rgba(0,0,0,0.5);
+        }
+        .header { display: flex; align-items: center; border-bottom: 2px solid var(--border-color); padding-bottom: 10px; margin-bottom: 15px; }
+        .header img { width: 100px; height: 100px; border-radius: 50%; border: 2px solid var(--border-color); object-fit: cover; margin-right: 20px; }
+        .header .char-name { font-size: 2.5em; margin: 0; }
+        .header .char-details { font-size: 1em; }
+        .attributes { display: grid; grid-template-columns: repeat(6, 1fr); gap: 10px; margin: 20px 0; }
+        .attr-box { background: var(--box-bg); border: 1px solid var(--box-border); border-radius: 5px; padding: 10px; text-align: center; }
+        .attr-box .attr-name { font-family: 'MedievalSharp', cursive; font-size: 1.1em; }
+        .attr-box .attr-score { font-size: 2em; font-weight: bold; }
+        .attr-box .attr-mod { font-size: 1em; background: #fff; border: 1px solid var(--text-color); border-radius: 50%; width: 25px; height: 25px; line-height: 25px; margin: 5px auto 0; }
+        .section { text-align: left; margin-bottom: 15px; border-top: 1px solid #d2b48c; padding-top: 15px; }
+        .section h2 { text-align: center; margin-top: 0; }
+        .grid-3-col { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; text-align: center; }
+        .grid-3-col div { background: var(--box-bg); padding: 8px; border-radius: 5px; border: 1px solid var(--box-border); }
+        .grid-3-col .stat-value { font-size: 1.5em; font-weight: bold; }
+        .grid-2-col { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        ul { padding-left: 20px; margin: 0; } li { margin-bottom: 5px; }
+        .back-link, .pdf-link {
+            font-family: 'MedievalSharp', cursive; color: var(--border-color); text-decoration: none; font-size: 1.2em;
+            margin-bottom: 20px; display: inline-block; background-color: var(--box-bg); padding: 5px 10px;
+            border: 1px solid var(--border-color); border-radius: 5px; transition: all 0.2s;
+        }
+        .back-link:hover, .pdf-link:hover { transform: scale(1.05); box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+        .editable { cursor: pointer; background-color: rgba(255, 255, 0, 0.1); border-radius: 3px; padding: 0 2px; }
+        [contenteditable]:focus { background-color: #fff; box-shadow: 0 0 5px var(--header-color); outline: none; }
+    </style>
+</head>
+<body>
+    <a href="personagens.html" class="back-link">❮ Voltar para a Galeria de Heróis</a>
+    <div class="sheet-container">
+        <header class="header">
+            <img src="Personagens/Helven Evenwood Portrait.png" alt="Retrato de Helven Elvenwood">
+            <div>
+                <h1 id="char_name" class="char-name editable">Helven Elvenwood</h1>
+                <div class="char-details">
+                    <span id="char_race" class="editable">Humano</span> | 
+                    <span id="char_class" class="editable">Guerreiro 3 (Campeão)</span> | 
+                    <span id="char_alignment" class="editable">Leal e Bom</span>
+                </div>
+                <a href="Personagens/Helven-Elvenwood.pdf" target="_blank" class="pdf-link">Abrir Ficha em PDF</a>
+            </div>
+        </header>
+
+        <section class="attributes">
+            <div class="attr-box"><div class="attr-name">Força</div><div id="attr_for_score" class="attr-score editable">14</div><div id="attr_for_mod" class="attr-mod">+2</div></div>
+            <div class="attr-box"><div class="attr-name">Destreza</div><div id="attr_des_score" class="attr-score editable">16</div><div id="attr_des_mod" class="attr-mod">+3</div></div>
+            <div class="attr-box"><div class="attr-name">Constituição</div><div id="attr_con_score" class="attr-score editable">15</div><div id="attr_con_mod" class="attr-mod">+2</div></div>
+            <div class="attr-box"><div class="attr-name">Inteligência</div><div id="attr_int_score" class="attr-score editable">11</div><div id="attr_int_mod" class="attr-mod">+0</div></div>
+            <div class="attr-box"><div class="attr-name">Sabedoria</div><div id="attr_sab_score" class="attr-score editable">13</div><div id="attr_sab_mod" class="attr-mod">+1</div></div>
+            <div class="attr-box"><div class="attr-name">Carisma</div><div id="attr_car_score" class="attr-score editable">9</div><div id="attr_car_mod" class="attr-mod">-1</div></div>
+        </section>
+
+        <section class="section">
+            <div class="grid-3-col">
+                 <div>Classe de Armadura<div id="combat_ac" class="stat-value editable">13</div></div>
+                 <div>Iniciativa<div id="combat_initiative" class="stat-value editable">+3</div></div>
+                 <div>Deslocamento<div id="combat_speed" class="stat-value editable">9m</div></div>
+                 <div>Pontos de Vida<div class="stat-value"><span id="combat_hp_current" class="editable">23</span> / <span id="combat_hp_total">23</span></div></div>
+                 <div>Dados de Vida<div id="combat_hit_dice" class="stat-value editable">3d10+2</div></div>
+                 <div>Bônus Prof.<div class="stat-value editable">+2</div></div>
+            </div>
+        </section>
+
+        <section class="section grid-2-col">
+            <div>
+                <h2>Ataques</h2>
+                <div id="char_attacks" class="editable">
+                    <ul>
+                        <li><strong>Montante:</strong> +4 acerto, 2d6+2 dano</li>
+                        <li><strong>Arco Longo:</strong> +7 acerto, 1d8+3 dano</li>
+                        <li><strong>Besta Leve:</strong> +7 acerto, 1d8+3 dano</li>
+                    </ul>
+                </div>
+            </div>
+            <div>
+                <h2>Perícias</h2>
+                <ul>
+                    <li>Acrobacia (Des): +3</li>
+                    <li>Atletismo (For): +4</li>
+                    <li>Furtividade (Des): +3</li>
+                    <li>Intuição (Sab): +3</li>
+                    <li>Lidar com Animais (Sab): +3</li>
+                    <li>Percepção (Sab): +3</li>
+                    <li>Sobrevivência (Sab): +3</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>Habilidades e Características</h2>
+            <div id="char_features" class="editable">
+                <ul>
+                    <li><strong>Retomar o Fôlego:</strong> Use ação bônus para curar 1d10 + nível de guerreiro.</li>
+                    <li><strong>Estilo de Combate (Arco e Flecha):</strong> +2 em ataques à distância.</li>
+                    <li><strong>Surto de Ação:</strong> Ganha uma ação adicional no seu turno.</li>
+                    <li><strong>Crítico Aprimorado:</strong> Margem de crítico 19-20.</li>
+                    <li><strong>Hospitalidade Rústica:</strong> Plebeus te abrigam e te protegem.</li>
+                </ul>
+            </div>
+        </section>
+        
+        <section class="section">
+            <h2>Equipamento e Dinheiro</h2>
+            <div id="char_equipment" class="editable">
+                <p>Armadura de couro, arco longo, 20 flechas, montante, mochila, besta leve e 20 virotes, saco de dormir, kit de alimentação, pederneira, 10 tochas, 10 dias de ração, odre, 15m de corda, ferramentas de carpinteiro, pá, panela, roupas comuns, bolsa.</p>
+                <p><strong>Dinheiro:</strong> 166 PC, 63 PE, 0 PL, 24 PO, 0 PP</p>
+            </div>
+        </section>
+        
+        <section class="section">
+             <h2>Personalidade</h2>
+             <div id="char_personality" class="editable">
+                <p><strong>Traços:</strong> Uso palavras rebuscadas, tenho pouca experiência em lidar com pessoas.</p>
+                <p><strong>Ideais:</strong> Sinceridade. Não é bom fingir ser algo que não sou.</p>
+                <p><strong>Ligações:</strong> Um dia, Thundertree vai ser uma cidade próspera novamente.</p>
+                <p><strong>Defeitos:</strong> Convencido do meu destino, cego para minhas limitações.</p>
+            </div>
+        </section>
+
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', (event) => {
+            const characterId = 'helven_elvenwood';
+            const editableElements = document.querySelectorAll('.editable');
+
+            // Load data from localStorage
+            function loadData() {
+                const savedData = localStorage.getItem(characterId);
+                if (savedData) {
+                    const data = JSON.parse(savedData);
+                    for (const id in data) {
+                        const element = document.getElementById(id);
+                        if (element) {
+                            element.innerHTML = data[id];
+                        }
+                    }
+                }
+            }
+
+            // Save data to localStorage
+            function saveData() {
+                const data = {};
+                editableElements.forEach(el => {
+                    data[el.id] = el.innerHTML;
+                });
+                localStorage.setItem(characterId, JSON.stringify(data));
+            }
+
+            // Add event listeners
+            editableElements.forEach(el => {
+                el.setAttribute('contenteditable', 'true');
+                el.addEventListener('blur', saveData); // Save when user clicks away
+            });
+
+            loadData();
+        });
+    </script>
+
+</body>
+</html>

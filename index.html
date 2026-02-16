@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Mina Perdida de Phandelver</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=MedievalSharp&family=Cinzel:wght@400;700&display=swap');
+
+        body {
+            font-family: 'Cinzel', serif;
+            background-color: #f5deb3; /* Cor de pergaminho */
+            color: #3a2d21; /* Marrom escuro */
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            background-image: url('https://www.transparenttextures.com/patterns/old-parchment.png'); /* Textura de pergaminho sutil */
+        }
+
+        header {
+            margin-top: 50px;
+            margin-bottom: 30px;
+        }
+
+        h1 {
+            font-family: 'MedievalSharp', cursive;
+            font-size: 4em;
+            color: #8b0000; /* Vermelho escuro */
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        p.subtitle {
+            font-size: 1.2em;
+            font-style: italic;
+        }
+
+        main {
+            width: 90%;
+            max-width: 900px;
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+        }
+
+        .grid-item {
+            background-color: rgba(210, 180, 140, 0.7); /* Tan com transparência */
+            border: 2px solid #8b4513; /* Marrom sela */
+            border-radius: 8px;
+            padding: 20px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            backdrop-filter: blur(2px);
+        }
+
+        .grid-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .grid-item h2 {
+            font-family: 'MedievalSharp', cursive;
+            color: #8b0000;
+            margin-top: 0;
+        }
+
+        .grid-item a {
+            text-decoration: none;
+            color: inherit;
+            display: block;
+            height: 100%;
+        }
+
+        footer {
+            margin-top: 50px;
+            padding: 20px;
+            font-size: 0.9em;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>A Mina Perdida de Phandelver</h1>
+        <p class="subtitle">Uma crônica da jornada de bravos aventureiros.</p>
+    </header>
+
+    <main>
+        <div class="grid-container">
+            <div class="grid-item">
+                <a href="personagens.html">
+                    <h2>Heróis da Aventura</h2>
+                    <p>Conheça os valentes heróis que desbravam os perigos em busca de fama e fortuna.</p>
+                </a>
+            </div>
+            <div class="grid-item">
+                <a href="diario.html">
+                    <h2>Diário de Bordo</h2>
+                    <p>Os relatos e acontecimentos da nossa jornada, sessão por sessão.</p>
+                </a>
+            </div>
+            <div class="grid-item">
+                <a href="mapa.html">
+                    <h2>Mapa da Costa da Espada</h2>
+                    <p>Explore as localizações e os segredos escondidos nas terras de Phandalin e arredores.</p>
+                </a>
+            </div>
+            <div class="grid-item">
+                <a href="npcs.html">
+                    <h2>Figuras Notáveis</h2>
+                    <p>Aliados, inimigos e os diversos habitantes que cruzaram o caminho dos heróis.</p>
+                </a>
+            </div>
+             <div class="grid-item">
+                <a href="bestiario.html">
+                    <h2>Bestiário</h2>
+                    <p>Um registro das criaturas e monstros encontrados, derrotados e, por vezes, temidos.</p>
+                </a>
+            </div>
+            <div class="grid-item">
+                <a href="tesouros.html">
+                    <h2>Tesouros e Itens</h2>
+                    <p>As relíquias, itens mágicos e tesouros acumulados ao longo da campanha.</p>
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>Esta é uma campanha de Dungeons & Dragons 5ª Edição. Mestre: Samuel</p>
+    </footer>
+
+</body>
+</html>
