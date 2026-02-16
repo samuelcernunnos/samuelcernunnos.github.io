@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Heróis de Phandalin - A Mina Perdida de Phandelver</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=MedievalSharp&family=Cinzel:wght@400;700&display=swap');
+        body {
+            font-family: 'Cinzel', serif;
+            background-color: #f5deb3;
+            color: #3a2d21;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            background-image: url('https://www.transparenttextures.com/patterns/old-parchment.png');
+        }
+        header {
+            margin-top: 50px;
+            margin-bottom: 30px;
+        }
+        h1 {
+            font-family: 'MedievalSharp', cursive;
+            font-size: 3.5em;
+            color: #8b0000;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        .back-link {
+            font-family: 'MedievalSharp', cursive;
+            color: #8b4513;
+            text-decoration: none;
+            font-size: 1.2em;
+            margin-bottom: 30px;
+            display: inline-block;
+        }
+        .back-link:hover {
+            text-decoration: underline;
+        }
+        main {
+            width: 90%;
+            max-width: 1200px;
+        }
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 25px;
+        }
+        .character-card {
+            background-color: rgba(210, 180, 140, 0.7);
+            border: 2px solid #8b4513;
+            border-radius: 8px;
+            padding: 15px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            backdrop-filter: blur(2px);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .character-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        .character-card h2 {
+            font-family: 'MedievalSharp', cursive;
+            color: #8b0000;
+            margin: 10px 0 0 0;
+            font-size: 1.5em;
+        }
+        .character-card a {
+            text-decoration: none;
+            color: inherit;
+        }
+        .character-card img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 2px solid #8b4513;
+            object-fit: cover;
+        }
+        footer {
+            margin-top: 50px;
+            padding: 20px;
+            font-size: 0.9em;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Heróis de Phandalin</h1>
+    </header>
+
+    <a href="index.html" class="back-link">Voltar para a Página Inicial</a>
+
+    <main>
+        <div class="grid-container">
+            
+            <div class="character-card">
+                <a href="helven_summary.html">
+                    <img src="Personagens/Helven Evenwood Portrait.png" alt="Retrato de Helven Evenwood">
+                    <h2>Helven Evenwood</h2>
+                </a>
+            </div>
+            
+            <div class="character-card">
+                <a href="Personagens/Merric Alderleaf.pdf" target="_blank">
+                    <img src="Personagens/Merric Galho Caído Portrait.png" alt="Retrato de Merric Galho Caído">
+                    <h2>Merric G. Caído</h2>
+                </a>
+            </div>
+            
+            <div class="character-card">
+                <a href="Personagens/OZKVAR VON TORUNN.pdf" target="_blank">
+                    <img src="Personagens/Ozkvar von Torunn Portrait .jpeg" alt="Retrato de Ozkvar von Torunn">
+                    <h2>Ozkvar von Torunn</h2>
+                </a>
+            </div>
+            
+            <div class="character-card">
+                <a href="Personagens/Stor Stormwind.pdf" target="_blank">
+                    <img src="Personagens/Stor Stormwind Portrait.png" alt="Retrato de Stor Stormwind">
+                    <h2>Stor Stormwind</h2>
+                </a>
+            </div>
+            
+            <div class="character-card">
+                <a href="Personagens/Thamior Liadon.pdf" target="_blank">
+                    <img src="Personagens/Thamior Liadon Portrait.png" alt="Retrato de Thamior Liadon">
+                    <h2>Thamior Liadon</h2>
+                </a>
+            </div>
+
+        </div>
+    </main>
+
+    <footer>
+        <p>Esta é uma campanha de Dungeons & Dragons 5ª Edição. Mestre: Samuel</p>
+    </footer>
+
+</body>
+</html>

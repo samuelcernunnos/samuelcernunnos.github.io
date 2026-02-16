@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Entreposto Escudo de Leão</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Lato:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: #2b2b2b;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            font-family: 'Lato', sans-serif;
+            padding: 20px;
+        }
+
+        .card-container {
+            background-image: url('https://www.transparenttextures.com/patterns/aged-paper.png');
+            background-color: #fdf6e3;
+            width: 100%;
+            max-width: 1000px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.5);
+            border: 8px solid #1a1a1a;
+            border-radius: 12px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Cantos Arredondados estilo card */
+        .corner-decoration {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            border: 2px solid #1a1a1a;
+            border-radius: 50%;
+            background: #fdf6e3;
+            z-index: 10;
+        }
+        .top-left { top: -10px; left: -10px; }
+        .top-right { top: -10px; right: -10px; }
+        .bottom-left { bottom: -10px; left: -10px; }
+        .bottom-right { bottom: -10px; right: -10px; }
+
+        .header-font {
+            font-family: 'Cinzel', serif;
+            color: #8B0000; /* Dark Red */
+        }
+        
+        .sub-header {
+            font-family: 'Cinzel', serif;
+            color: #8B0000;
+            border-bottom: 2px solid #d4c4a8;
+            padding-bottom: 2px;
+            margin-bottom: 4px;
+            margin-top: 12px;
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+
+        .item-row {
+            display: flex;
+            justify-content: space-between;
+            border-bottom: 1px solid #e0d5c1;
+            padding: 2px 0;
+            font-size: 0.9rem;
+        }
+        .item-row:last-child {
+            border-bottom: none;
+        }
+
+        .price {
+            font-weight: bold;
+            color: #4a4a4a;
+        }
+
+        .flavor-box {
+            background-color: #e3efe0;
+            border: 2px solid #9fbfa0;
+            padding: 10px;
+            color: #1a1a1a;
+            font-size: 0.9rem;
+            position: relative;
+        }
+        
+        .flavor-box::before {
+            content: '';
+            position: absolute;
+            left: -8px;
+            top: 50%;
+            transform: translateY(-50%);
+            border-top: 8px solid transparent;
+            border-bottom: 8px solid transparent;
+            border-right: 8px solid #9fbfa0;
+        }
+
+        .shield-icon {
+            color: #2c5282;
+        }
+
+        /* Estilo da Tabela */
+        .items-col {
+            column-count: 1;
+        }
+        @media (min-width: 768px) {
+            .items-col {
+                column-count: 2;
+                column-gap: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card-container p-6 md:p-8">
+        <!-- Decoration Corners to hide sharp edges -->
+        <div class="corner-decoration top-left"></div>
+        <div class="corner-decoration top-right"></div>
+        <div class="corner-decoration bottom-left"></div>
+        <div class="corner-decoration bottom-right"></div>
+
+        <!-- Header -->
+        <div class="flex items-center gap-4 mb-6 border-b-4 border-double border-stone-400 pb-2">
+            <div class="w-16 h-16 flex items-center justify-center bg-gray-100 rounded-b-xl rounded-t shadow-inner border border-gray-300">
+                <!-- Simple SVG Lion Shield Representation -->
+                <svg viewBox="0 0 24 24" class="w-10 h-10 shield-icon fill-current">
+                    <path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 10.99h7c-.53 4.12-3.28 7.79-7 8.94V12H5V6.3l7-3.11v8.8z"/>
+                </svg>
+            </div>
+            <h1 class="header-font text-4xl md:text-5xl font-black uppercase tracking-wide">Entreposto Escudo de Leão</h1>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            
+            <!-- Left Column: Character & Lore -->
+            <div class="lg:col-span-1 flex flex-col">
+                <!-- Character Placeholder -->
+                <div class="relative mb-4 group">
+                    <!-- Replace src with actual character image if available, using a placeholder for now -->
+                    <img src="https://files.idyllic.app/files/static/2191886" alt="Linene Graywind" class="w-full h-auto rounded shadow-md object-cover grayscale-[20%] sepia-[30%] hover:grayscale-0 transition duration-500">
+                    <div class="absolute bottom-0 left-0 bg-gradient-to-t from-black/80 to-transparent w-full p-2 pt-8 rounded-b">
+                        <h2 class="text-white font-serif text-xl font-bold">Linene Graywind</h2>
+                        <p class="text-gray-300 text-sm uppercase tracking-wider">Mestra do Entreposto</p>
+                    </div>
+                </div>
+
+                <!-- Lore Box -->
+                <div class="flavor-box rounded shadow-sm mt-auto">
+                    <h3 class="font-bold text-green-900 mb-1 uppercase text-sm tracking-wide">Companhia de Comércio</h3>
+                    <p class="italic leading-relaxed">
+                        O Entreposto Escudo de Leão, dono desta loja, é uma companhia mercante sediada em Yartar. A língua-afiada Linene Graywind gerencia este posto de trocas em Phandalin. Outros postos do Escudo de Leão podem ser encontrados em Pedra Noturna (Nightstone) e Triboar.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Right Column: Inventory List -->
+            <div class="lg:col-span-2">
+                <h2 class="header-font text-2xl font-bold mb-2 uppercase">Armamentos</h2>
+                
+                <div class="items-col">
+                    <!-- Simple Melee -->
+                    <div class="mb-4 break-inside-avoid">
+                        <h3 class="sub-header">Armas Simples Corpo a Corpo</h3>
+                        <div class="item-row"><span>Clava (Club)</span> <span class="price">1 pp</span></div>
+                        <div class="item-row"><span>Adaga (Dagger)</span> <span class="price">2 po</span></div>
+                        <div class="item-row"><span>Grande Clava (Greatclub)</span> <span class="price">2 pp</span></div>
+                        <div class="item-row"><span>Machadinha (Handaxe)</span> <span class="price">5 po</span></div>
+                        <div class="item-row"><span>Azagaia (Javelin)</span> <span class="price">5 pp</span></div>
+                        <div class="item-row"><span>Martelo Leve (Light Hammer)</span> <span class="price">2 po</span></div>
+                        <div class="item-row"><span>Maça (Mace)</span> <span class="price">5 po</span></div>
+                        <div class="item-row"><span>Bordão (Quarterstaff)</span> <span class="price">2 pp</span></div>
+                        <div class="item-row"><span>Foice Curta (Sickle)</span> <span class="price">1 po</span></div>
+                        <div class="item-row"><span>Lança (Spear)</span> <span class="price">1 po</span></div>
+                    </div>
+
+                    <!-- Simple Ranged -->
+                    <div class="mb-4 break-inside-avoid">
+                        <h3 class="sub-header">Armas Simples à Distância</h3>
+                        <div class="item-row"><span>Besta Leve (Light Crossbow)</span> <span class="price">25 po</span></div>
+                        <div class="item-row"><span>Dardo (Dart)</span> <span class="price">5 pc</span></div>
+                        <div class="item-row"><span>Arco Curto (Shortbow)</span> <span class="price">25 po</span></div>
+                        <div class="item-row"><span>Funda (Sling)</span> <span class="price">1 pp</span></div>
+                    </div>
+
+                     <!-- Martial Melee -->
+                     <div class="mb-4 break-inside-avoid">
+                        <h3 class="sub-header">Armas Marciais Corpo a Corpo</h3>
+                        <div class="item-row"><span>Machado de Batalha (Battleaxe)</span> <span class="price">10 po</span></div>
+                        <div class="item-row"><span>Mangual (Flail)</span> <span class="price">10 po</span></div>
+                        <div class="item-row"><span>Glaive</span> <span class="price">20 po</span></div>
+                        <div class="item-row"><span>Machado Grande (Greataxe)</span> <span class="price">30 po</span></div>
+                        <div class="item-row"><span>Montante (Greatsword)</span> <span class="price">50 po</span></div>
+                        <div class="item-row"><span>Alabarda (Halberd)</span> <span class="price">20 po</span></div>
+                        <div class="item-row"><span>Lança de Montaria (Lance)</span> <span class="price">10 po</span></div>
+                        <div class="item-row"><span>Espada Longa (Longsword)</span> <span class="price">15 po</span></div>
+                        <div class="item-row"><span>Marreta (Maul)</span> <span class="price">10 po</span></div>
+                        <div class="item-row"><span>Maça Estrela (Morningstar)</span> <span class="price">15 po</span></div>
+                        <div class="item-row"><span>Pique (Pike)</span> <span class="price">5 po</span></div>
+                        <div class="item-row"><span>Rapieira (Rapier)</span> <span class="price">25 po</span></div>
+                        <div class="item-row"><span>Cimitarra (Scimitar)</span> <span class="price">25 po</span></div>
+                        <div class="item-row"><span>Espada Curta (Shortsword)</span> <span class="price">10 po</span></div>
+                        <div class="item-row"><span>Tridente (Trident)</span> <span class="price">5 po</span></div>
+                        <div class="item-row"><span>Picareta de Guerra (War Pick)</span> <span class="price">5 po</span></div>
+                        <div class="item-row"><span>Martelo de Guerra (Warhammer)</span> <span class="price">15 po</span></div>
+                        <div class="item-row"><span>Chicote (Whip)</span> <span class="price">2 po</span></div>
+                    </div>
+
+                    <!-- Martial Ranged -->
+                    <div class="mb-4 break-inside-avoid">
+                        <h3 class="sub-header">Armas Marciais à Distância</h3>
+                        <div class="item-row"><span>Zarabatana (Blowgun)</span> <span class="price">10 po</span></div>
+                        <div class="item-row"><span>Besta de Mão (Hand Crossbow)</span> <span class="price">75 po</span></div>
+                        <div class="item-row"><span>Besta Pesada (Heavy Crossbow)</span> <span class="price">50 po</span></div>
+                        <div class="item-row"><span>Arco Longo (Longbow)</span> <span class="price">50 po</span></div>
+                        <div class="item-row"><span>Rede (Net)</span> <span class="price">1 po</span></div>
+                    </div>
+
+                    <!-- Ammunition -->
+                    <div class="mb-4 break-inside-avoid">
+                        <h3 class="sub-header">Munição</h3>
+                        <div class="item-row"><span>Flechas (20)</span> <span class="price">1 po</span></div>
+                        <div class="item-row"><span>Agulhas de Zarabatana (50)</span> <span class="price">1 po</span></div>
+                        <div class="item-row"><span>Virotes de Besta (20)</span> <span class="price">1 po</span></div>
+                        <div class="item-row"><span>Balas de Funda (20)</span> <span class="price">4 pc</span></div>
+                    </div>
+
+                    <!-- Armor Header -->
+                    <h2 class="header-font text-2xl font-bold mt-6 mb-2 uppercase break-before-auto">Armaduras</h2>
+
+                    <!-- Light Armor -->
+                    <div class="mb-4 break-inside-avoid">
+                        <h3 class="sub-header">Armaduras Leves</h3>
+                        <div class="item-row"><span>Acolchoada (Padded)</span> <span class="price">5 po</span></div>
+                        <div class="item-row"><span>Couro (Leather)</span> <span class="price">10 po</span></div>
+                        <div class="item-row"><span>Couro Batido (Studded Leather)</span> <span class="price">45 po</span></div>
+                    </div>
+
+                    <!-- Medium Armor -->
+                    <div class="mb-4 break-inside-avoid">
+                        <h3 class="sub-header">Armaduras Médias</h3>
+                        <div class="item-row"><span>Gibão de Peles (Hide)</span> <span class="price">10 po</span></div>
+                        <div class="item-row"><span>Camisão de Malha (Chain Shirt)</span> <span class="price">50 po</span></div>
+                        <div class="item-row"><span>Cota de Escamas (Scale Mail)</span> <span class="price">50 po</span></div>
+                    </div>
+
+                    <!-- Heavy Armor -->
+                    <div class="mb-4 break-inside-avoid">
+                        <h3 class="sub-header">Armaduras Pesadas</h3>
+                        <div class="item-row"><span>Cota de Anéis (Ring Mail)</span> <span class="price">30 po</span></div>
+                        <div class="item-row"><span>Cota de Malha (Chain Mail)</span> <span class="price">75 po</span></div>
+                    </div>
+
+                    <!-- Shields -->
+                    <div class="mb-4 break-inside-avoid">
+                        <h3 class="sub-header">Escudos</h3>
+                        <div class="item-row"><span>Escudo (Shield)</span> <span class="price">10 po</span></div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        
+        <!-- Footer / Credits -->
+        <div class="mt-8 text-center text-xs text-stone-500 font-serif border-t border-stone-300 pt-2">
+            Versão Adaptada para D&D 5ª Edição - Português Brasileiro
+        </div>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ficha Editável - Helven Elvenwood</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .header-info {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-top: 15px;
+        }
+
+        .header-info input {
+            background: rgba(255,255,255,0.2);
+            border: 1px solid rgba(255,255,255,0.3);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        .header-info input::placeholder {
+            color: rgba(255,255,255,0.7);
+        }
+
+        .content {
+            padding: 30px;
+        }
+
+        .section {
+            margin-bottom: 30px;
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid #667eea;
+        }
+
+        .section h2 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            font-size: 1.5em;
+            border-bottom: 2px solid #667eea;
+            padding-bottom: 10px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .stat-box {
+            background: white;
+            padding: 15px;
+            border-radius: 5px;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .stat-box label {
+            display: block;
+            font-weight: bold;
+            color: #667eea;
+            margin-bottom: 5px;
+            font-size: 0.9em;
+        }
+
+        .stat-box input {
+            width: 100%;
+            padding: 8px;
+            border: 2px solid #e0e0e0;
+            border-radius: 5px;
+            text-align: center;
+            font-size: 1.1em;
+            font-weight: bold;
+        }
+
+        .stat-box input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .modifier {
+            font-size: 0.9em;
+            color: #666;
+            margin-top: 5px;
+        }
+
+        .attack-row {
+            display: grid;
+            grid-template-columns: 2fr 1fr 2fr;
+            gap: 10px;
+            margin-bottom: 10px;
+            padding: 10px;
+            background: white;
+            border-radius: 5px;
+        }
+
+        .attack-row input {
+            padding: 8px;
+            border: 2px solid #e0e0e0;
+            border-radius: 5px;
+        }
+
+        .skill-row {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 10px;
+            margin-bottom: 8px;
+            padding: 8px;
+            background: white;
+            border-radius: 5px;
+            align-items: center;
+        }
+
+        .skill-row input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            margin-right: 10px;
+        }
+
+        textarea {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #e0e0e0;
+            border-radius: 5px;
+            font-family: inherit;
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        textarea:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .money-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 10px;
+        }
+
+        .save-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.1em;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 20px;
+            transition: transform 0.2s;
+        }
+
+        .save-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .proficiency-list {
+            background: white;
+            padding: 10px;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+
+        @media (max-width: 768px) {
+            .two-column {
+                grid-template-columns: 1fr;
+            }
+            
+            .attack-row {
+                grid-template-columns: 1fr;
+            }
+            
+            .money-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1 contenteditable="true" id="charName">Helven Elvenwood</h1>
+            <div class="header-info">
+                <input type="text" id="player" value="Igor" placeholder="Jogador">
+                <input type="text" id="race" value="Humano" placeholder="Raça">
+                <input type="text" id="class" value="Guerreiro 3 (Campeão)" placeholder="Classe">
+                <input type="text" id="background" value="Herói Popular" placeholder="Antecedente">
+                <input type="text" id="alignment" value="Leal e Bom" placeholder="Tendência">
+                <input type="number" id="xp" value="1260" placeholder="XP">
+            </div>
+        </div>
+
+        <div class="content">
+            <!-- Atributos -->
+            <div class="section">
+                <h2>Atributos</h2>
+                <div class="grid">
+                    <div class="stat-box">
+                        <label>Força</label>
+                        <input type="number" id="str" value="14" oninput="updateModifier('str')">
+                        <div class="modifier" id="str-mod">+2</div>
+                    </div>
+                    <div class="stat-box">
+                        <label>Destreza</label>
+                        <input type="number" id="dex" value="16" oninput="updateModifier('dex')">
+                        <div class="modifier" id="dex-mod">+3</div>
+                    </div>
+                    <div class="stat-box">
+                        <label>Constituição</label>
+                        <input type="number" id="con" value="15" oninput="updateModifier('con')">
+                        <div class="modifier" id="con-mod">+2</div>
+                    </div>
+                    <div class="stat-box">
+                        <label>Inteligência</label>
+                        <input type="number" id="int" value="11" oninput="updateModifier('int')">
+                        <div class="modifier" id="int-mod">+0</div>
+                    </div>
+                    <div class="stat-box">
+                        <label>Sabedoria</label>
+                        <input type="number" id="wis" value="13" oninput="updateModifier('wis')">
+                        <div class="modifier" id="wis-mod">+1</div>
+                    </div>
+                    <div class="stat-box">
+                        <label>Carisma</label>
+                        <input type="number" id="cha" value="9" oninput="updateModifier('cha')">
+                        <div class="modifier" id="cha-mod">-1</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Combate -->
+            <div class="section">
+                <h2>Combate</h2>
+                <div class="grid">
+                    <div class="stat-box">
+                        <label>CA</label>
+                        <input type="number" id="ac" value="13">
+                    </div>
+                    <div class="stat-box">
+                        <label>Iniciativa</label>
+                        <input type="text" id="initiative" value="+3">
+                    </div>
+                    <div class="stat-box">
+                        <label>Deslocamento</label>
+                        <input type="text" id="speed" value="9m">
+                    </div>
+                    <div class="stat-box">
+                        <label>PV Máximo</label>
+                        <input type="number" id="maxHp" value="23">
+                    </div>
+                    <div class="stat-box">
+                        <label>PV Atual</label>
+                        <input type="number" id="currentHp" value="23">
+                    </div>
+                    <div class="stat-box">
+                        <label>PV Temporário</label>
+                        <input type="number" id="tempHp" value="0">
+                    </div>
+                    <div class="stat-box">
+                        <label>Dados de Vida</label>
+                        <input type="text" id="hitDice" value="3d10+2">
+                    </div>
+                    <div class="stat-box">
+                        <label>Bônus Proficiência</label>
+                        <input type="text" id="profBonus" value="+2">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Testes de Resistência -->
+            <div class="section">
+                <h2>Testes de Resistência</h2>
+                <div class="grid">
+                    <div class="stat-box">
+                        <label>Força</label>
+                        <input type="text" id="savStr" value="+4">
+                    </div>
+                    <div class="stat-box">
+                        <label>Destreza</label>
+                        <input type="text" id="savDex" value="+3">
+                    </div>
+                    <div class="stat-box">
+                        <label>Constituição</label>
+                        <input type="text" id="savCon" value="+4">
+                    </div>
+                    <div class="stat-box">
+                        <label>Inteligência</label>
+                        <input type="text" id="savInt" value="+0">
+                    </div>
+                    <div class="stat-box">
+                        <label>Sabedoria</label>
+                        <input type="text" id="savWis" value="+1">
+                    </div>
+                    <div class="stat-box">
+                        <label>Carisma</label>
+                        <input type="text" id="savCha" value="-1">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Ataques -->
+            <div class="section">
+                <h2>Ataques e Magias</h2>
+                <div class="attack-row">
+                    <input type="text" value="Montante" placeholder="Nome">
+                    <input type="text" value="+4" placeholder="Bônus">
+                    <input type="text" value="2d6+2 cortante" placeholder="Dano/Tipo">
+                </div>
+                <div class="attack-row">
+                    <input type="text" value="Arco Longo" placeholder="Nome">
+                    <input type="text" value="+7" placeholder="Bônus">
+                    <input type="text" value="1d8+3 perfurante" placeholder="Dano/Tipo">
+                </div>
+                <div class="attack-row">
+                    <input type="text" value="Besta Leve" placeholder="Nome">
+                    <input type="text" value="+7" placeholder="Bônus">
+                    <input type="text" value="1d8+3 perfurante" placeholder="Dano/Tipo">
+                </div>
+                <div style="margin-top: 15px;">
+                    <textarea placeholder="Notas sobre ataques (alcances, propriedades especiais, etc.)">• Arco Longo: Alcance 45m normal / 180m com desvantagem
+• Besta Leve: Alcance 24m normal / 96m com desvantagem, propriedade Recarga (apenas 1 disparo por ação/bônus/reação)</textarea>
+                </div>
+            </div>
+
+            <!-- Perícias -->
+            <div class="section">
+                <h2>Perícias</h2>
+                <div class="two-column">
+                    <div>
+                        <div class="skill-row">
+                            <label><input type="checkbox" checked> Acrobacia (Des)</label>
+                            <input type="text" value="+3">
+                        </div>
+                        <div class="skill-row">
+                            <label><input type="checkbox"> Arcanismo (Int)</label>
+                            <input type="text" value="+0">
+                        </div>
+                        <div class="skill-row">
+                            <label><input type="checkbox" checked> Atletismo (For)</label>
+                            <input type="text" value="+4">
+                        </div>
+                        <div class="skill-row">
+                            <label><input type="checkbox"> Atuação (Car)</label>
+                            <input type="text" value="-1">
+                        </div>
+                        <div class="skill-row">
+                            <label><input type="checkbox"> Blefar (Car)</label>
+                            <input type="text" value="-1">
+                        </div>
+                        <div class="skill-row">
+                            <label><input type="checkbox" checked> Furtividade (Des)</label>
+                            <input type="text" value="+3">
+                        </div>
+                        <div class="skill-row">
+                            <label><input type="checkbox"> História (Int)</label>
+                            <input type="text" value="+0">
+                        </div>
+                        <div class="skill-row">
+                            <label><input type="checkbox"> Intimidação (Car)</label>
+                            <input type="text" value="-1">
+                        </div>
+                        <div class="skill-row">
+                            <label><input type="checkbox" checked> Intuição (Sab)</label>
+                            <input type="text" value="+3">
+                        </div>
+                    </div>
+                    <div>
+                        <div class="skill-row">
+                            <label><input type="checkbox"> Investigação (Int)</label>
+                            <input type="text" value="+0">
+                        </div>
+                        <div class="skill-row">
+                            <label><input type="checkbox" checked> Lidar com Animais (Sab)</label>
+                            <input type="text" value="+3">
+                        </div>
+                        <div class="skill-row">
+                            <label><input type="checkbox"> Medicina (Sab)</label>
+                            <input type="text" value="+1">
+                        </div>
+                        <div class="skill-row">
+                            <label><input type="checkbox"> Natureza (Int)</label>
+                            <input type="text" value="+0">
+                        </div>
+                        <div class="skill-row">
+                            <label><input type="checkbox" checked> Percepção (Sab)</label>
+                            <input type="text" value="+3">
+                        </div>
+                        <div class="skill-row">
+                            <label><input type="checkbox"> Persuasão (Car)</label>
+                            <input type="text" value="-1">
+                        </div>
+                        <div class="skill-row">
+                            <label><input type="checkbox"> Prestidigitação (Des)</label>
+                            <input type="text" value="+3">
+                        </div>
+                        <div class="skill-row">
+                            <label><input type="checkbox"> Religião (Int)</label>
+                            <input type="text" value="+0">
+                        </div>
+                        <div class="skill-row">
+                            <label><input type="checkbox" checked> Sobrevivência (Sab)</label>
+                            <input type="text" value="+3">
+                        </div>
+                    </div>
+                </div>
+                <div class="stat-box" style="margin-top: 15px;">
+                    <label>Sabedoria Passiva (Percepção)</label>
+                    <input type="number" value="13">
+                </div>
+            </div>
+
+            <!-- Proficiências e Idiomas -->
+            <div class="section">
+                <h2>Proficiências e Idiomas</h2>
+                <div class="proficiency-list">
+                    <textarea placeholder="Liste suas proficiências e idiomas">Proficiências:
+• Armaduras: Todas as armaduras e escudos
+• Armas: Armas simples e comuns
+• Ferramentas: Ferramentas de carpinteiro, veículos terrestres
+
+Idiomas:
+• Comum
+• Élfico</textarea>
+                </div>
+            </div>
+
+            <!-- Equipamento -->
+            <div class="section">
+                <h2>Equipamento</h2>
+                <textarea placeholder="Liste seu equipamento">Armadura de couro, arco longo, 20 flechas, montante, mochila, besta leve e 20 virotes, saco de dormir, kit de alimentação para viagens, pederneira, 10 tochas, 10 dias de ração, odre, 15 metros de corda de cânhamo, ferramentas de carpinteiro, pá, panela de ferro, conjunto de roupas comuns, bolsa</textarea>
+            </div>
+
+            <!-- Dinheiro -->
+            <div class="section">
+                <h2>Dinheiro</h2>
+                <div class="money-grid">
+                    <div class="stat-box">
+                        <label>PC</label>
+                        <input type="number" value="166">
+                    </div>
+                    <div class="stat-box">
+                        <label>PE</label>
+                        <input type="number" value="63">
+                    </div>
+                    <div class="stat-box">
+                        <label>PL</label>
+                        <input type="number" value="0">
+                    </div>
+                    <div class="stat-box">
+                        <label>PO</label>
+                        <input type="number" value="24">
+                    </div>
+                    <div class="stat-box">
+                        <label>PP</label>
+                        <input type="number" value="0">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Habilidades e Características -->
+            <div class="section">
+                <h2>Habilidades e Características</h2>
+                <textarea placeholder="Descreva suas habilidades de classe e características">RETOMAR O FÔLEGO
+Você pode usar uma ação bônus para recuperar pontos de vida iguais a 1d10 + seu nível de guerreiro. Requer descanso breve ou prolongado antes de usar novamente.
+
+ESTILO DE COMBATE (Arco e Flecha)
+Você ganha +2 nas jogadas de ataque com armas de longo alcance (já incluído no bônus de ataque).
+
+SURTO DE AÇÃO
+A partir do 2º nível, você pode realizar uma ação adicional durante seu turno, juntamente com sua ação e possível ação bônus.
+
+CRÍTICO APRIMORADO
+A partir do 3º nível, seus ataques com armas adquirem margem de acerto crítico de 19-20 nas jogadas de ataque.
+
+HOSPITALIDADE RÚSTICA (Antecedente)
+Você pode encontrar lugar para se esconder, descansar ou recuperar em meio a plebeus, que irão protegê-lo da lei ou perseguidores, embora não arrisquem suas vidas por você.</textarea>
+            </div>
+
+            <!-- Personalidade -->
+            <div class="section">
+                <h2>Personalidade</h2>
+                <div style="margin-bottom: 15px;">
+                    <label style="display: block; font-weight: bold; margin-bottom: 5px; color: #667eea;">Traços de Personalidade</label>
+                    <textarea placeholder="Seus traços de personalidade">• Eu uso palavras rebuscadas que transmitem a impressão de erudição
+• Passei tanto tempo no templo que tenho pouca experiência em lidar com as pessoas eventualmente</textarea>
+                </div>
+                <div style="margin-bottom: 15px;">
+                    <label style="display: block; font-weight: bold; margin-bottom: 5px; color: #667eea;">Ideais</label>
+                    <textarea placeholder="Seus ideais">Sinceridade. Não é bom fingir ser algo que não sou.</textarea>
+                </div>
+                <div style="margin-bottom: 15px;">
+                    <label style="display: block; font-weight: bold; margin-bottom: 5px; color: #667eea;">Ligações</label>
+                    <textarea placeholder="Suas ligações">Um dia, Thundertree vai ser uma cidade próspera novamente. Uma estátua minha vai ficar na praça da cidade.</textarea>
+                </div>
+                <div style="margin-bottom: 15px;">
+                    <label style="display: block; font-weight: bold; margin-bottom: 5px; color: #667eea;">Defeitos</label>
+                    <textarea placeholder="Seus defeitos">Estou convencido da importância do meu destino e cego para as minhas limitações e os riscos de fracasso.</textarea>
+                </div>
+            </div>
+
+            <!-- História -->
+            <div class="section">
+                <h2>História do Personagem</h2>
+                <textarea placeholder="Conte a história do seu personagem">Seus pais viviam na aldeia próspera de Thundertree, a leste de Neverwinter e na borda da Floresta Neverwinter. Quando as proximidades de Monte Hotenow entraram em erupção trinta anos atrás, seus pais fugiram levando você na infância. Sua família errou de aldeia em aldeia pelos arredores procurando trabalho como servos ou operários.
+
+Você passou os últimos anos em Neverwinter como estivador e operário nas docas movimentadas da cidade. Você enfrentou um capitão de navio abusivo uma vez, e outros estivadores o admiraram por isso.
+
+META PESSOAL: Expulsar o Dragão
+As ruínas de Thundertree chamam por você. As ruínas são assombradas por zumbis das cinzas e há rumores de que um dragão fez seu covil na Torre Velha. Mate o dragão ou expulse-o, e você provará a si mesmo e a todos que é um verdadeiro herói, destinado à grandeza.</textarea>
+            </div>
+
+            <!-- Botão Salvar -->
+            <button class="save-btn" onclick="saveCharacter()">💾 Salvar Ficha Localmente</button>
+        </div>
+    </div>
+
+    <script>
+        function updateModifier(ability) {
+            const score = parseInt(document.getElementById(ability).value) || 10;
+            const modifier = Math.floor((score - 10) / 2);
+            const modifierText = modifier >= 0 ? `+${modifier}` : `${modifier}`;
+            document.getElementById(`${ability}-mod`).textContent = modifierText;
+        }
+
+        function saveCharacter() {
+            const characterData = {
+                name: document.getElementById('charName').textContent,
+                player: document.getElementById('player').value,
+                race: document.getElementById('race').value,
+                class: document.getElementById('class').value,
+                background: document.getElementById('background').value,
+                alignment: document.getElementById('alignment').value,
+                xp: document.getElementById('xp').value,
+                abilities: {
+                    str: document.getElementById('str').value,
+                    dex: document.getElementById('dex').value,
+                    con: document.getElementById('con').value,
+                    int: document.getElementById('int').value,
+                    wis: document.getElementById('wis').value,
+                    cha: document.getElementById('cha').value
+                },
+                combat: {
+                    ac: document.getElementById('ac').value,
+                    initiative: document.getElementById('initiative').value,
+                    speed: document.getElementById('speed').value,
+                    maxHp: document.getElementById('maxHp').value,
+                    currentHp: document.getElementById('currentHp').value,
+                    tempHp: document.getElementById('tempHp').value,
+                    hitDice: document.getElementById('hitDice').value,
+                    profBonus: document.getElementById('profBonus').value
+                }
+            };
+
+            // Salvar no localStorage
+            localStorage.setItem('helven_character', JSON.stringify(characterData));
+            
+            // Feedback visual
+            const btn = event.target;
+            const originalText = btn.textContent;
+            btn.textContent = '✅ Salvo com Sucesso!';
+            btn.style.background = 'linear-gradient(135deg, #28a745 0%, #20c997 100%)';
+            
+            setTimeout(() => {
+                btn.textContent = originalText;
+                btn.style.background = 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)';
+            }, 2000);
+        }
+
+        // Carregar dados salvos ao abrir a página
+        window.addEventListener('load', () => {
+            const savedData = localStorage.getItem('helven_character');
+            if (savedData) {
+                const data = JSON.parse(savedData);
+                if (data.name) document.getElementById('charName').textContent = data.name;
+                if (data.player) document.getElementById('player').value = data.player;
+                // Adicione mais campos conforme necessário
+            }
+            
+            // Atualizar modificadores iniciais
+            ['str', 'dex', 'con', 'int', 'wis', 'cha'].forEach(updateModifier);
+        });
+    </script>
+</body>
+</html>
+
