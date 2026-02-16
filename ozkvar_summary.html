@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resumo - Ozkvar von Torunn</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=MedievalSharp&family=Cinzel:wght@400;700&display=swap');
+        :root {
+            --main-bg: #e8e0c2; --sheet-bg: #faf3e0; --border-color: #8b4513;
+            --header-color: #8b0000; --text-color: #3a2d21; --box-bg: #f5deb3; --box-border: #c8a062;
+        }
+        body {
+            font-family: 'Cinzel', serif; background-color: var(--main-bg); color: var(--text-color);
+            margin: 0; padding: 20px; display: flex; flex-direction: column; align-items: center;
+            background-image: url('https://www.transparenttextures.com/patterns/old-parchment.png');
+        }
+        h1, h2, h3 { font-family: 'MedievalSharp', cursive; color: var(--header-color); }
+        .sheet-container {
+            width: 100%; max-width: 850px; background-color: var(--sheet-bg); border: 2px solid var(--border-color);
+            border-radius: 5px; padding: 20px; box-shadow: 0 0 20px rgba(0,0,0,0.5);
+        }
+        .header { display: flex; align-items: center; border-bottom: 2px solid var(--border-color); padding-bottom: 10px; margin-bottom: 15px; }
+        .header img { width: 100px; height: 100px; border-radius: 50%; border: 2px solid var(--border-color); object-fit: cover; margin-right: 20px; }
+        .header .char-name { font-size: 2.5em; margin: 0; }
+        .header .char-details { font-size: 1em; }
+        .attributes { display: grid; grid-template-columns: repeat(6, 1fr); gap: 10px; margin: 20px 0; }
+        .attr-box { background: var(--box-bg); border: 1px solid var(--box-border); border-radius: 5px; padding: 10px; text-align: center; }
+        .attr-box .attr-name { font-family: 'MedievalSharp', cursive; font-size: 1.1em; }
+        .attr-box .attr-score { font-size: 2em; font-weight: bold; }
+        .attr-box .attr-mod { font-size: 1em; background: #fff; border: 1px solid var(--text-color); border-radius: 50%; width: 25px; height: 25px; line-height: 25px; margin: 5px auto 0; }
+        .section { text-align: left; margin-bottom: 15px; border-top: 1px solid #d2b48c; padding-top: 15px; }
+        .section h2 { text-align: center; margin-top: 0; }
+        .grid-3-col { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; text-align: center; }
+        .grid-3-col div { background: var(--box-bg); padding: 8px; border-radius: 5px; border: 1px solid var(--box-border); }
+        .grid-3-col .stat-value { font-size: 1.5em; font-weight: bold; }
+        .grid-2-col { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        ul { padding-left: 20px; margin: 0; } li { margin-bottom: 5px; }
+        .back-link, .pdf-link {
+            font-family: 'MedievalSharp', cursive; color: var(--border-color); text-decoration: none; font-size: 1.2em;
+            margin: 0 10px 20px 10px; display: inline-block; background-color: var(--box-bg); padding: 5px 10px;
+            border: 1px solid var(--border-color); border-radius: 5px; transition: all 0.2s;
+        }
+        .back-link:hover, .pdf-link:hover { transform: scale(1.05); box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+        @media (max-width: 768px) { .grid-2-col, .attributes { grid-template-columns: 1fr; } .header { flex-direction: column; text-align: center; } .header img { margin: 0 0 10px 0; } }
+    </style>
+</head>
+<body>
+    <div style="text-align: center;">
+        <a href="personagens.html" class="back-link">❮ Voltar para a Galeria</a>
+        <a href="https://github.com/samuelcernunnos/LMoP/wiki" target="_blank" class="back-link">📖 Wiki da Campanha</a>
+    </div>
+    <div class="sheet-container">
+        <header class="header">
+            <img src="Personagens/Ozkvar von Torunn Portrait .jpeg" alt="Ozkvar">
+            <div>
+                <h1 id="char_name" class="char-name editable">Ozkvar von Torunn</h1>
+                <div class="char-details">
+                    <span id="char_race" class="editable">Anão</span> | 
+                    <span id="char_class" class="editable">Clérigo</span> | 
+                    <span id="char_alignment" class="editable">Leal e Bom</span>
+                </div>
+                <a href="Personagens/OZKVAR VON TORUNN.pdf" target="_blank" class="pdf-link">Abrir Ficha em PDF</a>
+            </div>
+        </header>
+
+        <section class="attributes">
+            <div class="attr-box"><div class="attr-name">Força</div><div id="attr_for_score" class="attr-score editable">14</div><div id="attr_for_mod" class="attr-mod">+2</div></div>
+            <div class="attr-box"><div class="attr-name">Destreza</div><div id="attr_des_score" class="attr-score editable">8</div><div id="attr_des_mod" class="attr-mod">-1</div></div>
+            <div class="attr-box"><div class="attr-name">Constituição</div><div id="attr_con_score" class="attr-score editable">15</div><div id="attr_con_mod" class="attr-mod">+2</div></div>
+            <div class="attr-box"><div class="attr-name">Inteligência</div><div id="attr_int_score" class="attr-score editable">10</div><div id="attr_int_mod" class="attr-mod">+0</div></div>
+            <div class="attr-box"><div class="attr-name">Sabedoria</div><div id="attr_sab_score" class="attr-score editable">16</div><div id="attr_sab_mod" class="attr-mod">+3</div></div>
+            <div class="attr-box"><div class="attr-name">Carisma</div><div id="attr_car_score" class="attr-score editable">12</div><div id="attr_car_mod" class="attr-mod">+1</div></div>
+        </section>
+
+        <section class="section">
+            <div class="grid-3-col">
+                 <div>Classe de Armadura<div id="combat_ac" class="stat-value editable">18</div></div>
+                 <div>Iniciativa<div id="combat_initiative" class="stat-value editable">-1</div></div>
+                 <div>Deslocamento<div id="combat_speed" class="stat-value editable">7,5m</div></div>
+                 <div>Pontos de Vida<div class="stat-value"><span id="combat_hp_current" class="editable">--</span> / <span id="combat_hp_total">--</span></div></div>
+            </div>
+        </section>
+
+        <section class="section grid-2-col">
+            <div>
+                <h2>Ataques</h2>
+                <div id="char_attacks" class="editable"><ul><li>Preencher ataques...</li></ul></div>
+            </div>
+            <div>
+                <h2>Perícias</h2>
+                <div id="char_skills" class="editable"><ul><li>Preencher perícias...</li></ul></div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>Habilidades e Características</h2>
+            <div id="char_features" class="editable"><p>Visão no Escuro, Resiliência Anã, Treinamento em Combate Anão, Proficiência com Ferramentas, Especialista em Rochas, Discípulo da Vida...</p></div>
+        </section>
+        
+        <section class="section">
+            <h2>Equipamento e Dinheiro</h2>
+            <div id="char_equipment" class="editable"><p>Preencher equipamento...</p></div>
+        </section>
+
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', (event) => {
+            const characterId = 'ozkvar_torunn';
+            const editableElements = document.querySelectorAll('.editable');
+
+            function loadData() {
+                const savedData = localStorage.getItem(characterId);
+                if (savedData) {
+                    const data = JSON.parse(savedData);
+                    for (const id in data) {
+                        const element = document.getElementById(id);
+                        if (element) element.innerHTML = data[id];
+                    }
+                }
+            }
+
+            function saveData() {
+                const data = {};
+                editableElements.forEach(el => { data[el.id] = el.innerHTML; });
+                localStorage.setItem(characterId, JSON.stringify(data));
+            }
+
+            editableElements.forEach(el => {
+                el.setAttribute('contenteditable', 'true');
+                el.addEventListener('blur', saveData);
+            });
+            loadData();
+        });
+    </script>
+</body>
+</html>

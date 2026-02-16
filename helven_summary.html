@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ficha Editável - Helven Elvenwood</title>
+    <title>Resumo - Helven Elvenwood</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=MedievalSharp&family=Cinzel:wght@400;700&display=swap');
         :root {
@@ -38,54 +38,55 @@
         ul { padding-left: 20px; margin: 0; } li { margin-bottom: 5px; }
         .back-link, .pdf-link {
             font-family: 'MedievalSharp', cursive; color: var(--border-color); text-decoration: none; font-size: 1.2em;
-            margin-bottom: 20px; display: inline-block; background-color: var(--box-bg); padding: 5px 10px;
+            margin: 0 10px 20px 10px; display: inline-block; background-color: var(--box-bg); padding: 5px 10px;
             border: 1px solid var(--border-color); border-radius: 5px; transition: all 0.2s;
         }
         .back-link:hover, .pdf-link:hover { transform: scale(1.05); box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
-        .editable { cursor: pointer; background-color: rgba(255, 255, 0, 0.1); border-radius: 3px; padding: 0 2px; }
-        [contenteditable]:focus { background-color: #fff; box-shadow: 0 0 5px var(--header-color); outline: none; }
     </style>
 </head>
 <body>
-    <a href="personagens.html" class="back-link">❮ Voltar para a Galeria de Heróis</a>
+    <div style="text-align: center;">
+        <a href="personagens.html" class="back-link">❮ Voltar para a Galeria</a>
+        <a href="https://github.com/samuelcernunnos/LMoP/wiki" target="_blank" class="back-link">📖 Wiki da Campanha</a>
+    </div>
     <div class="sheet-container">
         <header class="header">
             <img src="Personagens/Helven Evenwood Portrait.png" alt="Retrato de Helven Elvenwood">
             <div>
-                <h1 id="char_name" class="char-name editable">Helven Elvenwood</h1>
+                <h1 id="char_name" class="char-name">Helven Elvenwood</h1>
                 <div class="char-details">
-                    <span id="char_race" class="editable">Humano</span> | 
-                    <span id="char_class" class="editable">Guerreiro 3 (Campeão)</span> | 
-                    <span id="char_alignment" class="editable">Leal e Bom</span>
+                    <span id="char_race">Humano</span> | 
+                    <span id="char_class">Guerreiro 3 (Campeão)</span> | 
+                    <span id="char_alignment">Leal e Bom</span>
                 </div>
-                <a href="Personagens/Helven-Elvenwood.pdf" target="_blank" class="pdf-link">Abrir Ficha em PDF</a>
+                <a href="https://1drv.ms/b/c/0ff059601c965c4b/IQBLXJYcYFnwIIAPpAcBAAAAAfZAaF7shW6VA9i50MRDee4?e=7iT8fT" target="_blank" class="pdf-link">Abrir Ficha em PDF (OneDrive)</a>
             </div>
         </header>
 
         <section class="attributes">
-            <div class="attr-box"><div class="attr-name">Força</div><div id="attr_for_score" class="attr-score editable">14</div><div id="attr_for_mod" class="attr-mod">+2</div></div>
-            <div class="attr-box"><div class="attr-name">Destreza</div><div id="attr_des_score" class="attr-score editable">16</div><div id="attr_des_mod" class="attr-mod">+3</div></div>
-            <div class="attr-box"><div class="attr-name">Constituição</div><div id="attr_con_score" class="attr-score editable">15</div><div id="attr_con_mod" class="attr-mod">+2</div></div>
-            <div class="attr-box"><div class="attr-name">Inteligência</div><div id="attr_int_score" class="attr-score editable">11</div><div id="attr_int_mod" class="attr-mod">+0</div></div>
-            <div class="attr-box"><div class="attr-name">Sabedoria</div><div id="attr_sab_score" class="attr-score editable">13</div><div id="attr_sab_mod" class="attr-mod">+1</div></div>
-            <div class="attr-box"><div class="attr-name">Carisma</div><div id="attr_car_score" class="attr-score editable">9</div><div id="attr_car_mod" class="attr-mod">-1</div></div>
+            <div class="attr-box"><div class="attr-name">Força</div><div id="attr_for_score" class="attr-score">14</div><div id="attr_for_mod" class="attr-mod">+2</div></div>
+            <div class="attr-box"><div class="attr-name">Destreza</div><div id="attr_des_score" class="attr-score">16</div><div id="attr_des_mod" class="attr-mod">+3</div></div>
+            <div class="attr-box"><div class="attr-name">Constituição</div><div id="attr_con_score" class="attr-score">15</div><div id="attr_con_mod" class="attr-mod">+2</div></div>
+            <div class="attr-box"><div class="attr-name">Inteligência</div><div id="attr_int_score" class="attr-score">11</div><div id="attr_int_mod" class="attr-mod">+0</div></div>
+            <div class="attr-box"><div class="attr-name">Sabedoria</div><div id="attr_sab_score" class="attr-score">13</div><div id="attr_sab_mod" class="attr-mod">+1</div></div>
+            <div class="attr-box"><div class="attr-name">Carisma</div><div id="attr_car_score" class="attr-score">9</div><div id="attr_car_mod" class="attr-mod">-1</div></div>
         </section>
 
         <section class="section">
             <div class="grid-3-col">
-                 <div>Classe de Armadura<div id="combat_ac" class="stat-value editable">13</div></div>
-                 <div>Iniciativa<div id="combat_initiative" class="stat-value editable">+3</div></div>
-                 <div>Deslocamento<div id="combat_speed" class="stat-value editable">9m</div></div>
-                 <div>Pontos de Vida<div class="stat-value"><span id="combat_hp_current" class="editable">23</span> / <span id="combat_hp_total">23</span></div></div>
-                 <div>Dados de Vida<div id="combat_hit_dice" class="stat-value editable">3d10+2</div></div>
-                 <div>Bônus Prof.<div class="stat-value editable">+2</div></div>
+                 <div>Classe de Armadura<div id="combat_ac" class="stat-value">13</div></div>
+                 <div>Iniciativa<div id="combat_initiative" class="stat-value">+3</div></div>
+                 <div>Deslocamento<div id="combat_speed" class="stat-value">9m</div></div>
+                 <div>Pontos de Vida<div class="stat-value"><span id="combat_hp_current">23</span> / <span id="combat_hp_total">23</span></div></div>
+                 <div>Dados de Vida<div id="combat_hit_dice" class="stat-value">3d10+2</div></div>
+                 <div>Bônus Prof.<div class="stat-value">+2</div></div>
             </div>
         </section>
 
         <section class="section grid-2-col">
             <div>
                 <h2>Ataques</h2>
-                <div id="char_attacks" class="editable">
+                <div id="char_attacks">
                     <ul>
                         <li><strong>Montante:</strong> +4 acerto, 2d6+2 dano</li>
                         <li><strong>Arco Longo:</strong> +7 acerto, 1d8+3 dano</li>
@@ -109,7 +110,7 @@
 
         <section class="section">
             <h2>Habilidades e Características</h2>
-            <div id="char_features" class="editable">
+            <div id="char_features">
                 <ul>
                     <li><strong>Retomar o Fôlego:</strong> Use ação bônus para curar 1d10 + nível de guerreiro.</li>
                     <li><strong>Estilo de Combate (Arco e Flecha):</strong> +2 em ataques à distância.</li>
